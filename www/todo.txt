@@ -1,0 +1,33 @@
+TODO
+
+* $(document).on('pagebeforeshow', wittyConfig.id.enterPasswordDialog,
+	 $(wittyConfig.id.enterPasswordPassword).bind('keyup', function() {
+	 
+* When you toggle background then load a map what background setting would you expect?
+
+* Loading locked map - map isn't redrawing loaded map
+
+$(document).on('change', wittyConfig.id.assetTextIconBoldCheckbox,
+$(document).on('change', wittyConfig.id.assetTextIconItalicCheckbox,
+$(document).on('pagebeforeshow', wittyConfig.id.assetTextIconPage,
+
+$(document).on('pageinit', wittyConfig.id.mapPage, function() {
+    // Remove Asset
+    $(wittyConfig.id.mapAssetRemove).tap(function() {
+
+
+* Disable submit on press enter on map details on Title text input
+
+* check for class="notetext"
+
+*buildIconList - bind?
+* loadIcon - loadSVGFromURL
+
+todo.txt
+
+* $(document).on('pagebeforeshow', wittyConfig.id.enterPasswordDialog,
+	 $(wittyConfig.id.enterPasswordPassword).bind('keyup', function() {
+	 
+* When you toggle background then load a map what background setting would you expect?
+
+* Loading locked map - map isn't redrawing loaded map

@@ -1,0 +1,111 @@
+What's important to you - Changelog
+===================================
+
+1.0 - first release version
+
+0.9.0 (release candidate)
+New icons
+* Carrot, Bus, Bed, Walking
+
+Tips section added to map page help.
+
+Bug fixes
+* Badge count
+* removing notes
+
+
+0.8.1
+Bug fixes
+* Save secret question
+* Minor change to HTML for validation purposes
+
+0.8.0
+New features:
+* When an asset has notes on the map there will now be a coloured outline 
+    around the object
+* Unlocked/Locked status now shown by padlock in map title bar
+* Tapping on the map name or padlock in the map title bar will be a shortcut to 
+    open the map details dialog.
+* 'Preferences' are now available via the map settings to allow a security
+    question to be added to be used if someone forgets a map password. Answering
+    the security question correctly will open the map
+* Extra icons added
+* A 'synonym' feature has been added to the "Choose an icon" page. Now there is 
+an additional set of words associated with each icon which are hidden but if 
+you type them into the search box you'll see icons that contain the alternative 
+text. e.g. type 'food' you'll get Apple, Chips, Doughnut, Fruit.... other
+examples of other groupings transport,people. For a full list see  
+http://witty.iriss.org.uk/app/asset-synonyms.txt
+
+0.7.8
+* Arrow icons added (up,down,left,right)
+* Add/Edit notes now auto focuses the text field
+* Auto select new text icons when added to map 
+
+0.7.7
+* Start screen altered - footer removed and badge added to Load map button
+  to indicate number of stored maps
+
+0.7.6
+Improvements
+* Text icons now have a larger 'hit' area making them easier to select 
+
+0.7.5
+Updates to Icons (start with a new map, saved maps may break):
+* New icons & some icons updated to better fit with the style
+* Most icons tweaked to work better and be a standard size
+* Some icons deleted
+
+0.7.4
+New Features
+* When an asset has notes attached it is indicated on the map screen
+  by a coloured outline around the icon. Has a bug but working on this.
+Additions
+* Group icon fixed and enabled
+* Two new Television icons added (retro & modern)
+* Old Television icon disabled
+* Approx 44 icons were tweaked/flattened so the outline function
+  would work, therefore slight increase in overall icon file sizes.
+
+0.7.3
+Updates
+tweaked the text behaviour to use placeholder text, 
+text larger size when added to map, 
+auto focus on open the page
+
+0.7.2
+New Features
+Added ability to add/edit text icons
+Added custom UI icon for this also
+Added extra help item for add text
+
+0.7.1
+No code changes. Version to add Frances McBride to provisioning profile
+N.B. Add text is work in progress.
+
+
+0.7.0 - Build 10
+New Features
+* Text list of all asset titles and text notes in the map 
+(new icon between '-' and gear icons on map page).
+* Ability to email list of text notes (N.B. depends on your iPad having a valid 
+ email account configured to be able to send mail).
+* Added some basic help to the map help page - from the 'i' button.
+
+Bug Fixes
+This version has some bug fixes that make it very much easier to select, resize 
+and rotate objects.
+
+When you tap on an object you'll see small squares around the outline of the 
+object - we call those 'handles'. If you want to resize something most of the 
+time would recommend pressing and dragging the handles in the corner, if you 
+choose the handles in the middle that will adjust only the width or the height 
+not both.
+
+For those of you who were at the Testing session at Kirkintilloch Health and 
+Care Centre on 17th April 2013 this should be a big improvement to the 
+frustration we were having trying to manipulate icons.
+
+Also bug fixes to adding/updating asset notes. 
+
+

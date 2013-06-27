@@ -1,0 +1,122 @@
+* Aeroplane: airplane plane transport travel vehicle 
+* Apple: food fruit
+* Baby: bairn child infant juvenile kid neonatal people person toddler youth
+* Bed: health night sleep
+* Bicycle: bike cycle transport travel vehicle 
+* Bird watching: birding twitching
+* Boat: transport travel vehicle water
+* Bottle: alcohol drink glass wine
+* Bowling ball: bowls game sphere sport
+* Broken heart: blue crying depression emotion gloom grief grieving heartbreak 
+    sad sorrow tearful
+* Bus: automobile coach transport travel vehicle
+* Butterfly: animal insect
+* Car: automobile motor transport travel vehicle
+* Carrot: food vegetable
+* Cat: animal kitten moggy pet
+* CD: audio data music
+* Celebrating: happy joy party perform
+* Child: bairn infant juvenile kid youth people person
+* Children: bairn infant juvenile kid youth people person
+* Chips: eating food french fries potato
+* Church: building chapel christian god religion
+* Clapper board: film video wood
+* Climbing: country hillwalking mountaineering rise travel up
+* Coffee cup: drink mug tea
+* Computer: internet it machine pc mac web
+* Dancing: active move party
+* Dice: cube gambling
+* Discussing: argument chat communication conversation dispute meeting talking
+* Dog: animal canine mongrel pet puppy
+* Doughnut: food pastry ring
+* Dress: clothing garment
+* Exercising: activity exercise fitness gym movement workout
+* Facebook: internet online networking social web
+* Family: children father group mother parents people 
+* Ferry: movement transport travel vehicle water
+* Film: cinema movies photograph recording video
+* Firework: bang explosive rocket
+* Fireworks: bang explosive rocket
+* Fishing: angling catching
+* Flower: floral plant
+* Football: activity kicking soccer sport
+* Fruit: diet eating food
+* Game controller: gaming nintendo playstation xbox
+* Gardening: agriculture digging flower growing horticulture outdoors plant 
+   weeding
+* Giraffe: africa animal neck tall
+* Golfing: activity club game grass green outdoors putting sport
+* Group: band company congregation crowd gang organisation people
+* Guitar: band instrument music strings
+* Hair dryer: air blow care grooming heat hot self styling
+* Haircut: brush care comb cut grooming self scissors trim
+* Hamburger: beef bun burger eat fast food mcdonalds meat roll takeaway
+* Hammer and spanner: bang diy hit mechanic metal nails tool wood wrench
+* Handshake: agreement contact greet hand hello introduction meet reception welcome
+* Headphones: audio ear head hear listen music podcast sound stereo
+* Heart: blood cardiac chest courage emotion health love organ
+* Horse riding: animal carry country outdoors pony racing support transport travel trek
+* House: address building flat home rent mortgage
+* iPod: app listen music mobile personal portable sound stereo
+* Jigsaw puzzle: patience problem toy
+* Kettle: boil coffee container cook heat liquid metal tea water
+* Knitting needles: fabric garment heal join stitch wool yarn
+* Mail: communication deliver email letter message package parcel post writing
+* Man: boy boyfriend brother father gentleman grandfather he male mr people 
+    person spouse uncle
+* Mascara brush: beauty care colour cosmetic eye makeup personal
+* Medicine: antibiotic cure drug heal health medication pill pharmaceutical 
+    prescription remedy tablet therapy treatment
+* Meditating: consider contemplate destress mindfulness reflect religious 
+    sitting spiritual
+* Microphone: audio recording singing sound
+* Mortar board: academic cap college education hat square university
+* Motorcycle: bike harley motorbike transport travel vehicle
+* Mountains: climbing country height hill large peak
+* Music: audio notes perform rhythm sing song sound tune
+* Nail polish: beauty care colour cosmetic finger hand makeup nail personal 
+    toenail
+* Nature: animal country earth environment forest outdoors plant reserve tree
+* Noughts and crosses: cross game o tack tick toe zero
+* Paint brush: coat cover decorating diy 
+* Paint palette: board choice choose colours decorating diy
+* Paint roller: coat cover cylinder decorating diy 
+* Pencil: drawing lead sketch wood write writing
+* Penguin: antarctica bird black cold south sea swim white
+* Picnic Table: bench drink eat food meal outdoors seat wood
+* Pill: capsule contraception cure drug heal health medication pharmaceutical 
+    prescription remedy therapy treatment
+* Pizza: bread cheese disc dough eat fast food italian pie takeaway tomato
+* Place setting: cutlery eat food fork knife meal plate
+* Plant: gardening grow herb pot seed sow vegetable
+* Postcard: message note picture post
+* Rabbit: animal bunny chatter talk
+* Reading: book information learning look magazine newspaper paper print study
+* River: canal stream water
+* Running: activity administer escape exercise jogging hurry moving organisation 
+    quick race walking
+* Sailing: transport travel vehicle water yacht
+* Saucepan: cook food metal pan
+* Scotland: country scottish
+* Skateboarding: activity board riding skate sport transport tricks wood
+* Snooker: ball frame game obstruct pool sport
+* Spider: animal insect spin web
+* Swimming: activity dive exercise float move paddle pool sport water
+* Table tennis: ball bat exercise game paddle ping pong sport
+* Telescope: astronomy lense look moon night observation planet sky space stars
+* Television modern: box broadcasting film image media rectangle screen tv video
+* Television retro: box broadcasting film image media rectangle screen tv video
+* Tennis: activity ball court exercise game grass racquet sport
+* Toast: bread breakfast brown cheese cook eat food grill heat morning
+* Train: coach rail transport subway travel underground vehicle
+* Video camera: film movie picture record sights tape
+* Waiting room: dentist doctor gp reception salon
+* Walking: activity exercise travel
+* Water: drink fluid rain wet
+* Watering can: flower garden metal outdoors plant plastic spout water wet
+* Wine: alcohol booze drink fluid liquid grapes spirits
+* Woman: aunt daughter female girl girlfriend grandmother lass miss mother mrs 
+    ms niece people person she sister spouse wife
+* Working: business busy effort employment job labour occupation task
+* Yoga: activity buddhism breathing destress exercise flexibility meditation 
+    peace pose posture spiritual sport stretch wellbeing

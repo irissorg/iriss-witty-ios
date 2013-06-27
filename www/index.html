@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, 
+        maximum-scale=1, minimum-scale=1, width=device-width" />
+    <link rel="stylesheet" href="css/jquery/jquery.mobile-1.3.1.min.css" />
+    <link rel="stylesheet" href="css/witty.css" />
+    <link rel="stylesheet" href="css/iosbadge.css">
+    <script type="text/javascript" src="js/cordova/cordova-2.6.0.js"></script>
+    <script type="text/javascript" src="js/cordova/plugins/Screenshot.js"></script>
+    <script type="text/javascript" src="js/cordova/plugins/SQLitePlugin.js"></script>
+
+    <script type="text/javascript" src="js/jquery/jquery-1.9.1.min.js"></script>
+
+    <script type="text/javascript" src="js/crypto-js/crypto-js-sha256.js"></script>
+    <script type="text/javascript" src="js/fabric/all.min.js"></script>
+    <script type="text/javascript" src="js/iosbadge/iosbadge.min.js"></script>
+       
+    <script type="text/javascript" src="js/witty/wittyconfig.js"></script>
+    <script type="text/javascript" src="js/witty/model/wittypreferences.js"></script>
+    <script type="text/javascript" src="js/witty/model/wittyusermap.js"></script>
+    <script type="text/javascript" src="js/witty/store/wittyuserdata.js"></script>
+    <script type="text/javascript" src="js/witty/view/wittyfabric.js"></script>
+    <script type="text/javascript" src="js/witty/view/wittyview.js"></script>
+    <script type="text/javascript" src="js/witty/controller/wittyapp.js"></script>
+    <script type="text/javascript" src="js/witty/wittyindex.js"></script>
+
+    <script type="text/javascript" src="js/jquery/jquery.mobile-1.3.1.min.js"></script>
+    <title>What's important to you?</title>
+</head>
+
+<body>
+    <!-- Home page -->
+    <div id="indexPage" data-role="page" data-title="What's important to you?"
+        data-theme="b">
+        <header data-role="header" data-position="fixed" data-theme="b">
+            <a href="#aboutDialog" data-role="button" data-icon="star"
+                class="ui-btn-left">About</a>
+            <h1>What's important to you?</h1>
+            <a href="#homeHelpPanel" data-role="button" data-rel="dialog"
+                data-display="push" data-icon="info"
+                class="ui-btn-right">Help</a>
+        </header>
+        
+        <div data-role="content" class="content centered ui-grid-solo"
+            id="homemenu">
+            <div class="centerme">
+                <a class="largebutton halfwidth" href="#mapDetailsDialog"
+                    id="indexCreateMapButton" data-role="button"
+                    data-transition="pop" data-icon="plus"
+                    title="Add a new map" data-inline="true"
+                    data-theme="positive">Create map</a>
+                <a class="largebutton halfwidth ui-disabled"
+                    href="#loadMapPage" id="indexLoadMapButton"
+                    data-role="button" data-icon="bars"
+                    title="Open an existing map" data-inline="true"
+                    data-theme="positive2">Load map</a><span id="mapcountanchor"><span class="mapcountbadge"></span></span>
+             </div>
+        </div>
+        
+        <div id="homeHelpPanel" data-role="panel" data-theme="e">
+            <h2>Help</h2>
+            
+            <h3>Create map</h3>
+            <p>Adds a new map.</p>
+            
+            <h3>Load map</h3>
+            <p>Opens an existing map.</p>
+            
+            <a href="#indexPage" data-role="button" data-inline="true"
+                data-icon="back" data-rel="close">Close help</a>
+        </div><!-- /panel -->
+    </div>
+    
+    <div id="mapDetailsDialog" data-role="dialog" data-theme="b"
+        data-title="Map details">
+        <header data-role="header" data-position="fixed" data-theme="b">
+            <h1>Map details</h1>
+        </header>
+        
+        <div data-role="content" class="content" data-theme="c">
+            <form id="mapDetailsForm" name="mapDetailsForm" action="#"
+                method="post">
+                <div data-role="fieldcontain">
+                    <label for="mapDetailsName">Name:</label>
+                    <input type="text" name="mapDetailsName"
+                    id="mapDetailsName" value=""
+                    placeholder="Sam's first map" />
+                </div>
+                
+                <div data-role="fieldcontain">
+                    <label for="mapDetailsDescription">Description</label>
+                    <textarea name="mapDetailsDescription"
+                        id="mapDetailsDescription" placeholder="about your map">
+                    </textarea>
+                </div>
+
+                <p>If you want your map to be password-protected then set
+                    Locked to 'Yes'.</p>
+                <div data-role="fieldcontain">
+                    <label for="mapDetailsLocked">Locked:</label>
+                    <select name="mapDetailsLocked" id="mapDetailsLocked"
+                        data-role="slider" data-icon="witty-lock">
+                        <option value="no">No</option>
+                        <option value="yes">Yes</option>
+                    </select>
+                
+                    <img src="images/ui/witty-ui-unlocked-36.png" height="36"
+                    alt="" style="padding-left:1em" id="mapDetailsLockImage" />
+                </div>
+
+                <div data-role="fieldcontain" id="mapDetailsPasswordFields">
+                    <label for="mapDetailsPassword">Password:</label>
+                    <input type="password" name="mapDetailsPassword"
+                        id="mapDetailsPassword" autocomplete="off" />
+                </div>
+
+                <div id="mapDetailsDateText">
+                    <div data-role="fieldcontain">
+                        <strong>Date created:</strong>
+                        <span id="mapDetailsDateCreated" ></span>
+                    </div>
+                    <div data-role="fieldcontain">
+                        <strong>Date modified:</strong>
+                        <span id="mapDetailsDateModified" ></span>
+                    </div>
+                </div>
+
+                <div class="centered">
+                    <input type="button" data-theme="b" value="Save"
+                        id="mapDetailsSaveButton" name="mapDetailsSaveButton"
+                        data-icon="check" data-inline="true" />
+                    <input type="button" id="mapDetailsDeleteButton"
+                        value="Delete" name="mapDetailsDeleteButton"
+                        data-icon="delete" data-inline="true" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="appPreferencesDialog" data-role="dialog" data-theme="b"
+        data-title="Preferences" data-close-btn="none">
+        <header data-role="header" data-position="fixed" data-theme="b">
+            <h1>Preferences</h1>
+        </header>
+        <div data-role="content" data-theme="c" class="content">
+            <form action="#" id="appPreferencesForm" name="appPreferencesForm">
+                <fieldset id="appPreferencesPasswordSecurity">
+                <legend>Password security:</legend>
+                <div id="appPreferencesSecretQuestion" data-role="fieldcontain">
+                    <p>In case you forget a map password please set a
+                    security question and answer.</p>
+                    <label for="appPreferencesSecretQuestionText">
+                        Question:</label>
+                    <input id="appPreferencesSecretQuestionText"
+                        name="appPreferencesSecretQuestionText" type="text"
+                        value="" placeholder="Your question here" />
+                </div>
+                <div id="appPreferencesSecretAnswer" data-role="fieldcontain">
+                    <label for="appPreferencesSecretAnswerText">
+                        Answer:</label>
+                    <input id="appPreferencesSecretAnswerText"
+                        name="appPreferencesSecretAnswerText" type="password"
+                        placeholder="Your answer here" autocomplete="off"
+                        value="" />
+                </div>
+                </fieldset>
+                <div class="centered">
+                    <a href="#" id="appPreferencesOKButton" data-role="button"
+                        data-icon="check" data-theme="b" data-rel="back" 
+                        data-inline="true">OK</a>
+
+                    <a href="#" id="appPreferencesCancelButton"
+                        data-role="button" data-icon="back" data-rel="back"
+                        data-inline="true">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+  
+    <div id="forgotPasswordDialog" data-role="dialog" data-theme="b"
+        data-title="Forgot password">
+        <header data-role="header" data-position="fixed" data-theme="b">
+            <h1>Forgot password</h1>
+        </header>
+
+        <div data-role="content" data-theme="c" class="content">
+            <form action="#" id="forgotPasswordForm" name="forgotPasswordForm">
+                <fieldset id="forgotPasswordPasswordSecurity">
+                <legend>Security question</legend>
+                <div>
+                    <div id="forgotPasswordPadlockImage"
+                        class="ui-icon-padlock-locked-large"></div>
+                    <p>To open the map, please answer your security question.</p>
+                    <div style="clear:both"></div>
+                </div>
+                    <div id="forgotPasswordSecretQuestion"
+                        data-role="fieldcontain">
+                    <p><strong>Question:</strong>
+                        <span id="forgotPasswordSecretQuestionText">
+                            Placeholder</span></p>
+                </div>
+                <div id="forgotPasswordSecretAnswer" data-role="fieldcontain">
+                    <label for="forgotPasswordSecretAnswerText">
+                        Answer:</label>
+                    <input id="forgotPasswordSecretAnswerText"
+                    name="forgotPasswordSecretAnswerText" type="text"
+                    placeholder="Your answer here" autocomplete="off"
+                    value="" />
+                </div> 
+                </fieldset>
+                <div class="centered">
+                    <a href="#" id="forgotPasswordCancelButton"
+                        data-role="button" data-icon="back" data-rel="back"
+                        data-inline="true">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <div id="deleteMapDialog" data-role="dialog" data-theme="b"
+        data-title="Delete">
+        <header data-role="header" data-position="fixed" data-theme="b">
+            <h1>Are you sure?</h1>
+        </header>
+        
+        <div data-role="content" data-theme="c" class="content centered">
+            <p>Delete <span id="deletethismap">this map</span>?</p>
+            <p>This cannot be undone.</p>
+            <p><a data-role="button" id="deleteMapConfirmButton" data-theme="f"
+                data-inline="true">Yes</a>
+            <a data-role="button" data-rel="back" data-direction="reverse"
+                data-inline="true">No</a></p>
+        </div>
+    </div>       
+    
+    <div id="enterPasswordDialog" data-role="dialog" data-theme="b"
+        data-title="Enter password">
+        <header data-role="header" data-position="fixed" data-theme="b">
+            <h1>Enter password</h1>
+        </header>
+        
+        <div data-role="content" data-theme="c" class="content">
+            <form name="enterPasswordForm" id="enterPasswordForm"
+                action="#" method="post" class="centered">
+                <p>Please enter the password to access this map.</p>
+                <p><img id="enterPasswordThumbImage"
+                src="images/ui/witty-ui-locked-80.png" alt="" width="80"
+                height="80" /></p>
+           
+                <div data-role="fieldcontain">
+                    <label for="enterPasswordPassword">Password:</label>
+                    <input type="password" name="enterPasswordPassword"
+                        id="enterPasswordPassword" value=""
+                    autocomplete="off" />
+                </div>
+                <p id="enterPasswordForgotPasswordLinkText">
+                    <a href="#" id="enterPasswordForgotPasswordLink">
+                        Forgot password?</a></p>
+            </form>
+        </div>
+    </div>
+
+    <div id="loadMapPage" data-role="page" data-theme="b" data-title="Load map">
+        <header data-role="header" data-position="fixed" data-theme="b">
+            <a data-icon="back" data-rel="back"
+                data-direction="reverse">Cancel</a>
+            <h1>Load a map</h1>
+        </header>
+        <div id="loadmapcontainer" data-role="content" data-theme="c"
+            class="content">
+            <ul data-theme="c" data-role="listview" id="loadMapList"
+                data-inset="true" data-filter="true"
+                data-filter-placeholder="Find a map" data-split-icon="edit">
+            </ul>
+        </div>
+    </div>
+
+    <div id="mapPage" data-role="page" data-theme="c" data-title="Map">
+        <div data-role="panel" id="mapHelpPanel" data-display="overlay"
+            data-theme="e">
+            <h2>Map help</h2>
+            <h3>Moving an asset</h3>
+            <p>Tap and press on an asset while dragging your finger
+            to move the asset to a new position on the map.</p>
+
+            <h3>Changing asset settings</h3>
+            <p>Double tap, i.e. tap twice quickly on an asset. An &quot;Asset
+            settings&quot; page should open to allow you to change the
+            following:
+            <ul>
+                <li>Title</li>
+                <li>Colour</li>
+                <li>Add and remove text notes</li>
+            </ul>
+            
+            <h3 data-theme="b"><a href="#" data-role="button"
+                data-inline="true" data-iconpos="notext"
+                data-icon="plus"></a> Add asset</h3>
+            <p>Choose an image from a list of icons to represent your asset.</p>
+            <h3><a href="#" data-role="button" data-inline="true"
+                data-icon="minus"
+                data-iconpos="notext"></a> Remove asset</h3>
+            <p>Tap on an image until you see a set of squares around
+                the image. Then press the remove asset button and the
+                asset and its notes will be removed from the map.</p>
+            <h3><a href="#" data-role="button" data-inline="true"
+                data-icon="witty-txticon" data-iconpos="notext"></a>
+                Add text</h3>
+            <p>Add a text icon to the map. </p>
+            <h3><a href="#" data-role="button" data-inline="true"
+                data-iconpos="notext" data-icon="bars"></a> Notes</h3>
+            <p>Shows a full list of names of assets together with
+            their notes. If your iPad has a valid email account
+            then you'll be able to email this text.</p>
+            <h3><a href="#" data-role="button" data-inline="true"
+                data-transition="slidedown" data-iconpos="notext"
+                data-icon="gear"></a> Map options</h3>
+            <p>Edit map details, take a screenshot of the map or
+            change the display and colour of the background image.</p>
+            <h3><a href="#" data-role="button" data-inline="true"
+                data-iconpos="notext" data-icon="info"></a> Help</h3>
+            <p>This help page.</p>
+            
+            <h3>Tips</h3>
+            <p>The more icons on the map the more slowly the app will work so
+            we recommend keeping less than 25 icons on the map.</p>
+
+            <a href="#mapPage" data-role="button" data-inline="true"
+                data-rel="close" data-icon="back">Close help</a>
+        </div><!-- /panel -->
+        <header data-role="header" data-position="fixed" data-theme="b">
+            <a href="#indexPage" data-icon="home">Home</a>
+            <a href="#" data-rel="back" data-direction="reverse"
+                data-icon="back">Back</a>
+            <h1 id="mapTitleBar">Map</h1>
+            <div class="ui-btn-right" data-role="controlgroup"
+                data-type="horizontal">
+                	<a href="#assetIconsPage" data-role="button"
+                        id="mapAssetAddButton" data-inline="true"
+                        data-iconpos="notext" data-icon="plus">Add asset</a>
+					<a data-role="button" data-inline="true"
+                        id="mapAssetRemoveButton" data-iconpos="notext"
+                        data-icon="minus">Remove asset</a>
+					<a href="#assetTextIconPage" data-role="button"
+                        id="mapTextAssetAdd" data-inline="true"
+                        data-icon="witty-txticon"
+                        data-iconpos="notext">Add text</a>
+                    <a href="#allNotesPage" data-role="button"
+                        data-iconpos="notext" data-icon="bars">Notes</a>
+		            <a href="#optionsDialog" data-role="button"
+                        data-transition="slidedown" data-iconpos="notext"
+                        data-icon="gear">Options...</a>
+                    <a href="#mapHelpPanel" data-role="button"
+                        data-rel="dialog" data-display="overlay"
+                        data-iconpos="notext" data-icon="info">Help</a>
+            </div>
+        </header>
+        <div data-role="content" class="content nopadding" data-theme="c">
+            <!-- Canvas -->
+            <canvas id="c" width="1024" height="708"
+                style="border:0px none #ccc;"></canvas>
+        </div>
+    </div>
+
+    <div id="optionsDialog" data-role="dialog" class="dialog-actionsheet">
+        <header data-role="header" data-theme="b">
+            <h1>Map options</h1>
+        </header>
+        <div data-role="content" data-theme="c">
+            <a href="#mapDetailsDialog" id="mapEditDetailsButton"
+                data-role="button" data-transition="pop"
+                data-icon="edit">Edit map details</a>
+            <a href="#mapPage" id="optionsScreenshotButton" data-role="button"
+                data-rel="dialog" data-transition="pop"
+                data-icon="witty-screenshot">Take screenshot</a>
+            <a href="#appPreferencesDialog" id="optionsPreferencesButton"
+                data-role="button" data-rel="dialog" data-transition="pop"
+                data-icon="gear">Preferences</a>
+            <form>
+                <label for="optionsBackgroundImageSelect">Background:</label>
+                <select name="optionsBackgroundImageSelect"
+                    id="optionsBackgroundImageSelect" data-role="slider">
+                    <option value="on">On</option>
+                    <option value="off">Off</option>
+                </select>
+                <select name="optionsBackgroundColourSelect"
+                    id="optionsBackgroundColourSelect" data-role="slider">
+                    <option value="white">Light</option>
+                    <option value="black">Dark</option>
+                </select>
+            </form>
+        </div>
+    </div>
+    
+    <div id="aboutDialog" data-role="dialog" data-theme="e" data-title="About">
+        <header data-role="header" data-position="fixed" data-theme="b">
+            <h1>About</h1>
+        </header>
+        
+        <div data-role="content" data-theme="e" class="centered">
+            <p><strong>What's important to you?</strong></p>
+            <p>Version: <span id="aboutVersion"></span></p>
+            <p>Copyright: <span id="aboutCopyright"></span></p>
+            <p><a href="#creditsDialog" data-role="button" data-inline="true"
+                data-icon="star">Credits</a></p>
+        </div>
+    </div>
+
+    <div id="creditsDialog" data-role="dialog" data-theme="e"
+        data-title="Credits">
+        <header data-role="header" data-position="fixed" data-theme="b">
+            <a href="#indexPage" data-icon="home">Home</a>
+            <h1>Credits</h1>
+        </header>
+        
+        <div data-role="content" data-theme="e">
+            <h2>IRISS Project Team</h2>
+            <ul>
+                <li>Lesley Duff (Development)</li>
+                <li>Paul Hart (Development)</li>
+                <li>Lisa Pattoni (Project management)</li>
+                <li>Ian Watson (Project management)</li>
+            </ul>
+            <h2>Thanks</h2>
+            <p>IRISS would like to thank the following people for their
+            participation and feedback:</p>
+            <ul>
+                <li>Peter Cameron</li>
+                <li>Jennifer Dick</li>
+                <li>Julie Leonard</li>
+                <li>Frances McBride</li>
+                <li>David Scarry</li>
+                <li>Calum Vaughan</li>
+            </ul>
+            <h2>Icons</h2>
+            <ul>
+            <li>Padlock, <a href="http://www.webdesignerdepot.com">Webdesigner
+                Depot</a></li>
+            </ul>
+            <h2>Asset Icons</h2>
+            <ul id="creditsIconAttributionList"></ul>
+            <h2>Code</h2>
+            <p>This application was built using:</p>
+            <ul>
+            <li><a href="https://code.google.com/p/crypto-js/">CryptoJS</a></li>
+            <li><a href="http://fabricjs.com/">Fabric.js</a></li>
+            <li><a href="http://jquery.com/">jQuery</a></li>
+            <li><a href="http://jquerymobile.com/">jQuery Mobile</a></li>
+            <li><a href="http://phonegap.com/">PhoneGap</a></li>
+            </ul>
+        </div>
+    </div>
+    
+   <div id="assetIconsPage" data-role="page" data-theme="b"
+       data-title="Icons">
+        <header data-role="header" data-position="fixed" data-theme="b">
+            <a data-rel="back" data-direction="reverse"
+                data-icon="back">Back</a>
+            <h1>Choose an icon</h1>
+        </header>
+        
+        <div data-role="content" data-theme="c">
+            <ul id="assetIconsList" data-role="listview" data-filter="true" 
+                data-filter-placeholder="Search icons..." 
+                data-autodividers="true" data-inset="true">
+            </ul>
+        </div>
+    </div>        
+    
+    <!-- Icon Settings Page -->
+    <div id="assetSettingsPage" data-role="page" data-title="Asset settings">
+        <header data-role="header" data-position="fixed" data-theme="b">
+            <a data-role="button" data-icon="back" id="back2"
+                href="#mapPage" data-inline="true">Back</a>
+            <h1>Asset settings</h1>
+        </header>
+
+        <!-- Add Note -->
+        <div data-history="false" data-role="popup" id="addNotePopup" data-theme="d"
+            data-overlay-theme="a">
+            <div data-role="header" data-theme="b" class="ui-corner-top">
+                <h1>Add Note</h1>
+            </div>
+            <div data-role="content" data-theme="d"
+                class="ui-corner-bottom ui-content">
+                <form>
+                    <label class="ui-hidden-accessible"
+                        for="addNoteTextarea">Textarea:</label>
+                    <textarea cols="40" rows="10" name="addNoteTextarea"
+                        id="addNoteTextarea"></textarea>
+                </form>
+                <a class="ui-disabled" href="#" data-role="button"
+                    data-inline="true" data-theme="b" data-icon="check"
+                    id="addNoteSaveNoteButton" >Save Note</a>
+                <a href="#" data-role="button" data-inline="true"
+                    data-rel="back" data-theme="c">Cancel</a>
+            </div>
+        </div>
+
+        <!-- Update Note -->
+        <div data-history="false" data-role="popup" id="updateNotePopup"
+            data-theme="d" data-overlay-theme="a">
+            <div data-role="header" data-theme="a" class="ui-corner-top">
+                <h1>Update Note</h1>
+            </div>
+            <div data-role="content" data-theme="d"
+                class="ui-corner-bottom ui-content">
+                <form>
+                    <label class="ui-hidden-accessible"
+                        for="updateNoteTextarea">Textarea:</label>
+                    <textarea cols="40" rows="10" name="updateNoteTextarea"
+                        id="updateNoteTextarea"></textarea>
+                </form>
+                <a class="ui-disabled" href="#" data-role="button"
+                    data-inline="true" data-theme="b" data-icon="check"
+                    id="updateNoteButton" >Update Note</a>
+                <a href="#" data-role="button" data-inline="true"
+                    data-rel="back" data-theme="c">Cancel</a>
+            </div>
+        </div>
+
+        <div data-role="content">
+            <!-- Mini Canvas -->
+            <canvas id="iconthumbnail" width="200" height="200" 
+style="border:0px solid #ccc;box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);"></canvas>
+
+            <form class="ui-content" id="assetSettingsTitleForm" name="assetSettingsTitleForm">
+                <label class="ui-hidden-accessible"
+                    for="assetSettingsTitleText">Asset title</label>
+                <input data-clear-btn="true" name="assetSettingsTitleText"
+                    id="assetSettingsTitleText" value="" type="text"
+                    placeholder="Asset title" />
+            </form>
+
+            <div id="assetSettingsColourTabsInline">
+                <div class="gradient_0" data-colour="#a5b8da"></div>
+                <div class="gradient_1" data-colour="#ffd65e"></div>
+                <div class="gradient_2" data-colour="#606c88"></div>
+                <div class="gradient_3" data-colour="#d5cea6"></div>
+                <div class="gradient_4" data-colour="#a90329"></div>
+                <div class="gradient_5" data-colour="#4ba614"></div>
+                <div class="gradient_6" data-colour="#ff5db1"></div>
+                <div class="gradient_7" data-colour="#7d7e7d"></div>
+                <div class="gradient_8" data-colour="#cef8ff"></div>
+                <div class="gradient_9" data-colour="#f2f9fe"></div>
+                <div class="gradient_10" data-colour="#fb83fa"></div>
+                <div class="gradient_11" data-colour="#3093c7"></div>
+                <div class="gradient_12" data-colour="#a9db80"></div>
+                <div class="gradient_13" data-colour="#b29af8"></div>
+                <div class="gradient_14" data-colour="#f2f5f6"></div>
+                <div class="gradient_15" data-colour="#ffc579"></div>
+                <div class="gradient_20" data-colour="#ff9a9a"></div>
+                <div class="gradient_21" data-colour="#a9a588"></div>
+                <div class="gradient_22" data-colour="#f62b2b"></div>
+                <div class="gradient_23" data-colour="#a67939"></div>
+            </div>
+            <div style="clear:both;"></div>
+
+            <a class="ui-disabled" id="assetSettingsAddNoteButton"
+                href="#addNotePopup" data-role="button" data-inline="true"
+                data-rel="popup" data-theme="b" data-icon="plus"
+                data-position-to="window">Add note</a>
+
+            <div class="ui-content">
+                <ul data-role="listview" data-inset="true"
+                    id="assetSettingsNotesList" data-split-icon="minus"
+                    class="nonotes">
+                    <li data-role="list-divider">Notes</li>
+                </ul>
+            </div>
+        </div>
+    </div><!-- end Icon Settings page -->
+     
+		<!-- Add Text Icon Page -->
+		<div id="assetTextIconPage" data-role="page" data-title="Add text icon">
+			<header data-role="header" data-position="fixed" data-theme="b">
+				<a data-role="button" data-icon="back" id="back3" href="#mapPage" data-inline="true">Back</a>
+				<h1>Add text icon</h1>
+			</header>
+			<!-- start content -->
+			<div data-role="content">
+				<div class="ui-grid-a">
+					<div class="ui-block-a">
+						<canvas id="icontextthumbnail" width="480" height="150" style="margin-top:10px;margin-left:10px;border:1px solid #ccc;box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);"></canvas>
+					</div>
+					<div class="ui-block-b">
+						<form>
+							<label class="ui-hidden-accessible" for="assetTextIconTextarea">Text for Icon:</label>
+							<textarea style="height: 100px; max-height: 100px;" cols="40" rows="4" name="texticontext" id="assetTextIconTextarea" maxlength="160" placeholder="Your label here"></textarea>
+						</form>
+						
+						<div class="ui-grid-a">
+							<div class="ui-block-a">
+								<form>
+									<fieldset data-role="controlgroup" data-type="horizontal">
+										<legend class="ui-hidden-accessible">Fomatting:</legend>
+										<input name="checkbox-bold" id="assetTextIconBoldCheckbox" type="checkbox" />
+										<label for="assetTextIconBoldCheckbox"><strong>Bold</strong></label>
+										<input name="checkbox-italic" id="assetTextIconItalicCheckbox" type="checkbox" />
+										<label for="assetTextIconItalicCheckbox"><em>Italic</em></label>
+									</fieldset>
+								</form>
+							</div>
+					
+					
+							<div class="ui-block-b">
+								<div data-role="controlgroup" data-type="horizontal" >
+									<a data-role="button" data-inline="true" href="#assetTextIconFontPopup" data-rel="popup" data-icon="bars" data-transition="pop">Font</a>
+									<a data-role="button" data-inline="true" href="#alignpicker" data-rel="popup" data-icon="bars" data-transition="pop">Align</a>
+								</div>
+							</div>	
+						</div><!-- /grid-a -->
+					</div>
+				</div><!-- /grid-a -->
+
+
+			<div class="ui-grid-a">
+				<div class="ui-block-a">
+				<div id="assetTextIconColourTabsInline2">
+								<div class="gradient_0" data-colour="#a5b8da"></div>
+								<div class="gradient_1" data-colour="#ffd65e"></div>
+								<div class="gradient_2" data-colour="#606c88"></div>
+								<div class="gradient_3" data-colour="#d5cea6"></div>
+								<div class="gradient_4" data-colour="#a90329"></div>
+								<div class="gradient_5" data-colour="#4ba614"></div>
+								<div class="gradient_6" data-colour="#ff5db1"></div>
+								<div class="gradient_7" data-colour="#7d7e7d"></div>
+								<div class="gradient_8" data-colour="#cef8ff"></div>
+								<div class="gradient_9" data-colour="#f2f9fe"></div>
+								<div class="gradient_10" data-colour="#fb83fa"></div>
+								<div class="gradient_11" data-colour="#3093c7"></div>
+								<div class="gradient_12" data-colour="#a9db80"></div>
+								<div class="gradient_13" data-colour="#b29af8"></div>
+								<div class="gradient_14" data-colour="#f2f5f6"></div>
+								<div class="gradient_15" data-colour="#ffc579"></div>
+								<div class="gradient_20" data-colour="#ff9a9a"></div>
+								<div class="gradient_21" data-colour="#a9a588"></div>
+								<div class="gradient_22" data-colour="#f62b2b"></div>
+								<div class="gradient_23" data-colour="#a67939"></div>
+							</div>
+							
+				</div>
+				<div class="ui-block-b" style="padding-left:0px;">
+					<a data-role="button" data-rel="popup" data-icon="plus" data-theme="b" id="assetTextIconAddTextButton">Add text to my map</a>
+				</div>
+			</div><!-- /grid-a -->
+		</div>
+		<!-- end content -->
+
+			<!-- Start Font Picker Popup -->
+			<div data-role="popup" id="assetTextIconFontPopup" data-theme="d">
+				<ul data-role="listview" data-inset="true" id="assetTextIconFontList" style="min-width:210px;" data-theme="d">
+					<li data-role="divider" data-theme="e">Choose an font</li>
+					<li><a>helvetica</a></li>
+					<li><a>courier</a></li>
+					<li><a>georgia</a></li>
+				</ul>
+			</div>
+			<!-- End Font Picker Popup -->
+			
+			<!-- Start Text Align Popup -->
+			<div data-role="popup" id="alignpicker" data-theme="d">
+				<ul data-role="listview" data-inset="true" id="assetTextIconAlignList" style="min-width:210px;" data-theme="d">
+					<li data-role="divider" data-theme="e">Choose an alignment</li>
+					<li><a>left</a></li>
+					<li><a>center</a></li>
+					<li><a>right</a></li>
+					<li><a>justify</a></li>
+				</ul>
+			</div>
+			<!-- End Text Align Popup -->
+		</div><!-- end Add Text Icon page -->
+    
+    <!-- All Map Notes Page start -->
+    <div id="allNotesPage" data-role="page" data-title="All map notes"
+        data-theme="d">
+        <header data-role="header" data-position="fixed" data-theme="b">
+            <a data-rel="back" data-direction="reverse"
+                data-icon="back">Back</a>
+            <h1 id="allNotesTitleBar">All map notes</h1>
+        </header>
+        <div data-role="content" class="content" data-theme="d"
+            style="-webkit-user-select: auto;">
+            <div id="allNotesEmail">
+                <p><a data-role="button" data-theme="b" id="allNotesEmailButton"
+                    href="#" data-inline="true"
+                    target="_blank">Share these notes by email</a></p>
+            </div>
+            <div id="allNotesText" data-role="content">
+                <p>List of map notes</p>
+                <ul id="allNotesList">
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- All Map Notes Page end -->
+</body>
+</html>
